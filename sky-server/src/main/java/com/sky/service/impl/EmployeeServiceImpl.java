@@ -85,6 +85,28 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
+     * 启用禁用员工账号
+     * @param status
+     * @param id
+     */
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        //update employee set status = ? where id = ?
+
+        //一种比较粗狂的写法
+//        Employee employee = new Employee();
+//        employee.setStatus(status);
+//        employee.setId(id);
+        //由于Employee实体类中含有@Builder注解，创建实体对象的时候可以通过 类名.builder 创建
+        Employee employee=Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+
+        employeeMapper.update(employee);
+    }
+
+    /**
      * 员工登录
      *
      * @param employeeLoginDTO
