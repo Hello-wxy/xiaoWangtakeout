@@ -53,14 +53,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPassword(PasswordConstant.DEFAULT_SECRETPASSWORD());
 
         //设置创建时间和修改时间
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
+        //由于已经做了公共字段自动添加，因此无需手动添加
+        //employee.setCreateTime(LocalDateTime.now());
+        //employee.setUpdateTime(LocalDateTime.now());
 
         //设置修改当前记录创建人的id和修改人id
         //最初先写死，之后再通过新技术来改为当前登录用户的id
         //通过ThreadLocal方法，利用common模块中的BaseContext类来获取CurrentId
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+
+        //由于已经做了公共字段自动添加，因此无需手动添加
+//        employee.setCreateUser(BaseContext.getCurrentId());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.insert(employee);
 
     }
@@ -125,8 +128,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO,employee);
 
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+        //由于已经做了公共字段自动添加，因此无需手动添加
+        //employee.setUpdateTime(LocalDateTime.now());
+        //employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.update(employee);
     }
